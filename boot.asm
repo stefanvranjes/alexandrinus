@@ -18,7 +18,7 @@ start:
     
     ; 2. Read the Kernel from the disk!
     mov ah, 0x02    ; BIOS Command: Read Sectors
-    mov al, 15      ; Number of sectors to read
+    mov al, 32      ; Read 32 sectors = 16 KB (plenty of headroom)
     mov ch, 0       ; Cylinder 0
     mov dh, 0       ; Head 0
     mov cl, 2       ; Start reading from Sector 2 (Sector 1 is us!)

@@ -10,11 +10,11 @@ if %errorlevel% neq 0 ( pause & exit /b %errorlevel% )
 if %errorlevel% neq 0 ( pause & exit /b %errorlevel% )
 
 echo Compiling C Source Files...
-C:\msys64\ucrt64\bin\gcc.exe -m32 -ffreestanding -nostdlib -c kernel.c terminal.c idt.c
+C:\msys64\ucrt64\bin\gcc.exe -m32 -ffreestanding -nostdlib -c kernel.c terminal.c idt.c pit.c exceptions.c pmm.c
 if %errorlevel% neq 0 ( pause & exit /b %errorlevel% )
 
 echo Linking...
-C:\msys64\ucrt64\bin\ld.exe -m i386pe -T linker.ld kernel_entry.o interrupt.o kernel.o terminal.o idt.o -o kernel.pe
+C:\msys64\ucrt64\bin\ld.exe -m i386pe -T linker.ld kernel_entry.o interrupt.o kernel.o terminal.o idt.o pit.o exceptions.o pmm.o -o kernel.pe
 if %errorlevel% neq 0 ( pause & exit /b %errorlevel% )
 
 C:\msys64\ucrt64\bin\objcopy.exe -O binary kernel.pe kernel.bin
